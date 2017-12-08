@@ -1,17 +1,15 @@
-<!DOCTYPE html>
 <html>
 <head>
     <script src="/js/lib/markdown.js"></script>
-    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
-    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
 </head>
   <body>
 	<div id="preview"> </div>
 	<script>
-		$(document).ready(function(){
-		  var mdText=$.ajax({url:"README.md",async:false});
-		  $("#preview").innerHTML = markdown.toHTML(mdText, 'Maruku');
-		});
+		$.ajax({url:"README.md",success:function(result){
+		    $("#preview").html(markdown.toHTML(result, 'Maruku'));
+		}});
 	</script>
   </body>
 </html>
