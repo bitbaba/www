@@ -3,24 +3,15 @@
 <head>
     <script src="/js/lib/markdown.js"></script>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
 </head>
   <body>
-    <textarea id="text-input" oninput="this.editor.update()" rows="6" cols="60">\` a != 0 \` Type **Markdown** here.</textarea>
-    <div id="preview"> </div>
-    <!-- http://docs.mathjax.org/en/latest/advanced/typeset.html -->
-    <script>
-      function Editor(input, preview) {
-        this.update = function () {
-          preview.innerHTML = markdown.toHTML(input.value, 'Maruku');
-          if (typeof MathJax !== 'undefined' ) { MathJax.Hub.Queue(["Typeset",MathJax.Hub]); }
-        };
-        input.editor = this;
-        this.update();
-      }
-      var $ = function (id) { return document.getElementById(id); };
-      new Editor($("text-input"), $("preview"));
-    </script>
-    <p>When `a != 0`, there are two solutions to `ax^2 + bx + c = 0` and they are</p>
-    <p style="text-align:center"> `x = (-b +- sqrt(b^2-4ac))/(2a) .` </p>
+	<div id="preview"> </div>
+	<script>
+		$(document).ready(function(){
+		  var mdText=$.ajax({url:"README.md",async:false});
+		  $("#preview").innerHTML = markdown.toHTML(mdText, 'Maruku');
+		});
+	</script>
   </body>
 </html>
